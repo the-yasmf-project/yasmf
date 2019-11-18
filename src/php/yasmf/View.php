@@ -19,7 +19,6 @@
 
 namespace yasmf;
 
-
 class View
 {
     private $relativePath;
@@ -41,8 +40,9 @@ class View
      */
     public function render()
     {
-        ob_start();
+        // convert view params in variable accessible by the php file
         extract($this->viewParams);
+        // "enrole" the php file used to build and send the response
         require_once $_SERVER['DOCUMENT_ROOT'] . "/$this->relativePath.php";
     }
 
