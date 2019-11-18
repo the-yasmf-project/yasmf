@@ -23,19 +23,15 @@ use controllers;
 
 class Router
 {
-
     public function route($dataSource)
     {
-
-        // set controllers with the current model
+        // set the controller to enrole
         $controllerName = "controllers\\" . HttpHelper::get('controller') . "Controller";
         $controller = new $controllerName();
-        // set action to trigger
+        // set the action to trigger
         $action = HttpHelper::get('action') ?: 'defaultAction';
-
         // trigger the appropriate action and get the resulted view
         $view = $controller->$action($dataSource->getPdo());
-
         // render the view
         $view->render();
     }
