@@ -35,12 +35,9 @@ class View
         return $this;
     }
 
-    /**
-     * @return false|string
-     */
     public function render()
     {
-        // convert view params in variable accessible by the php file
+        // convert view params in variables accessible by the php file
         extract($this->viewParams);
         // "enrole" the php file used to build and send the response
         require_once $_SERVER['DOCUMENT_ROOT'] . "/$this->relativePath.php";
