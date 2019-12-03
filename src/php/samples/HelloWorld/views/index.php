@@ -30,7 +30,7 @@ spl_autoload_register();
 use yasmf\HttpHelper;
 ?>
 <h1>Hello</h1>
-<form action="hello_world.php" method="get">
+<form action="hello_world.php" method="post">
     <input hidden name="action" value="sayHello">
     <input hidden name="controller" value="HelloWorld">
     Your name? <input name="name" type="text" placeholder="your name here">

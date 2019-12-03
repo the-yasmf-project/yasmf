@@ -26,10 +26,11 @@ class Router
     public function route($dataSource)
     {
         // set the controller to enrole
-        $controllerName = "controllers\\" . HttpHelper::getParam('controller') . "Controller";
-        $controller = new $controllerName();
+        $controllerName = HttpHelper::getParam('controller') ?: 'Home';
+        $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";
+        $controller = new $controllerQualifiedName();
         // set the action to trigger
-        $action = HttpHelper::getParam('action') ?: 'defaultAction';
+        $action = HttpHelper::getParam('action') ?: 'index';
         // trigger the appropriate action and get the resulted view
         $view = $controller->$action($dataSource->getPdo());
         // render the view
