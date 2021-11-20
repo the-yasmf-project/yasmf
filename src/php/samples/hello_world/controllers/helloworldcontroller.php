@@ -27,7 +27,7 @@ class HelloWorldController
 {
     public function sayHello() {
         $name = HttpHelper::getParam('name') ?: 'no name' ;
-        $view = new View("HelloWorld/views/hello_you");
+        $view = new View("hello_world/views/hello_you");
         $view->setVar('name',$name);
         return $view;
     }

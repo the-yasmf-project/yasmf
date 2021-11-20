@@ -43,7 +43,7 @@ class HomeController
 {
 
     public function index() {
-        $view = new View("HelloWorld/views/index");
+        $view = new View("hello_world/views/index");
         return $view;
     }
 
