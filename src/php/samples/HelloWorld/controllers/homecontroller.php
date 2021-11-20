@@ -42,7 +42,7 @@ use yasmf\View;
 class HomeController
 {
 
-    public function index($pdo) {
+    public function index() {
         $view = new View("HelloWorld/views/index");
         return $view;
     }

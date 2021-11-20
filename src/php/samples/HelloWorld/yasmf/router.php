@@ -23,7 +23,7 @@ use controllers;
 
 class Router
 {
-    public function route($dataSource)
+    public function route($dataSource = null)
     {
         // set the controller to enrole
         $controllerName = HttpHelper::getParam('controller') ?: 'Home';
@@ -32,7 +32,11 @@ class Router
         // set the action to trigger
         $action = HttpHelper::getParam('action') ?: 'index';
         // trigger the appropriate action and get the resulted view
-        $view = $controller->$action($dataSource->getPdo());
+        if ($dataSource != null) {
+            $view = $controller->$action($dataSource->getPdo());
+        } else {
+            $view = $controller->$action();
+        }
         // render the view
         $view->render();
     }

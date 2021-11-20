@@ -25,7 +25,7 @@ use yasmf\View;
 
 class HelloWorldController
 {
-    public function sayHello($pdo) {
+    public function sayHello() {
         $name = HttpHelper::getParam('name') ?: 'no name' ;
         $view = new View("HelloWorld/views/hello_you");
         $view->setVar('name',$name);
