@@ -19,7 +19,6 @@
 
 namespace controllers;
 
-use yasmf\HttpHelper;
 use yasmf\View;
 
 /**
