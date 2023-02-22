@@ -1,7 +1,7 @@
 <?php
-/**
+/*
  * yasmf - Yet Another Simple MVC Framework (For PHP)
- *     Copyright (C) 2019   Franck SILVESTRE
+ *     Copyright (C) 2022   Franck SILVESTRE
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -17,30 +17,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace yasmf;
+use yasmf\DataSource;
+use PHPUnit\Framework\TestCase;
 
-class View
+class DataSourceTest extends TestCase
 {
-    private $relativePath;
-    private $viewParams = array();
-
-    public function __construct($relativePath)
-    {
-        $this->relativePath = $relativePath;
+    function testDemo() {
+        $this->assertTrue(true);
     }
-
-    public function setVar($key, $value)
-    {
-        $this->viewParams[$key] = $value;
-        return $this;
-    }
-
-    public function render()
-    {
-        // convert view params in variables accessible by the php file
-        extract($this->viewParams);
-        // "enrole" the php file used to build and send the response
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/$this->relativePath.php";
-    }
-
 }

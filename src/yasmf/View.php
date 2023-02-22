@@ -19,12 +19,28 @@
 
 namespace yasmf;
 
-
-class HttpHelper
+class View
 {
-    public static function getParam($name) {
-        if (isset($_GET[$name])) return $_GET[$name];
-        if (isset($_POST[$name])) return $_POST[$name];
-        return null;
+    private string $relativePath;
+    private array $viewParams = array();
+
+    public function __construct($relativePath)
+    {
+        $this->relativePath = $relativePath;
     }
+
+    public function setVar($key, $value) : View
+    {
+        $this->viewParams[$key] = $value;
+        return $this;
+    }
+
+    public function render() : void
+    {
+        // convert view params in variables accessible by the php file
+        extract($this->viewParams);
+        // "enrole" the php file used to build and send the response
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/View.php";
+    }
+
 }

@@ -23,12 +23,12 @@ use PDO;
 
 class DataSource
 {
-    private $host;
-    private $port;
-    private $db;
-    private $user;
-    private $pass;
-    private $charset;
+    private string $host;
+    private int $port;
+    private string $db;
+    private string $user;
+    private string $pass;
+    private string $charset;
 
     public function __construct($host, $port, $db, $user, $pass, $charset)
     {
@@ -40,7 +40,7 @@ class DataSource
         $this->charset = $charset;
     }
 
-    public function getPDO()
+    public function getPDO(): PDO
     {
         $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->db;charset=$this->charset";
         $options = [
@@ -50,8 +50,7 @@ class DataSource
             PDO::ATTR_PERSISTENT => true
         ];
 
-        $pdo = new PDO($dsn, $this->user, $this->pass, $options);
-        return $pdo;
+        return new PDO($dsn, $this->user, $this->pass, $options);
     }
 
 }

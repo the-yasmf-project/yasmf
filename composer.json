@@ -1,0 +1,15 @@
+{
+  "name": "yasmf/yasmf",
+  "autoload": {
+    "psr-4": {"yasmf\\": "src/yasmf"}
+  },
+  "require": {
+    "php": ">=8.0",
+    "phpunit/phpunit": "10.0.*",
+    "phpstan/phpstan": "1.10.*",
+    "ext-pdo": "*"
+  },
+  "scripts": {
+    "phpstan": "vendor/bin/phpstan analyse -c ../../phpstan.neon"
+  }
+}
