@@ -36,20 +36,35 @@ class Router
     public function route(DataSource $dataSource = null): void
     {
         // set the controller to enroll
-        $controller_name = HttpHelper::getParam('controller') ?: 'Home';
-        $controller_qualified_name = "controllers\\" . $controller_name . "Controller";
-        $controller = new $controller_qualified_name();
+        $controller = $this->createController();
         // set the action to trigger
-        $action = HttpHelper::getParam('action') ?: 'index';
+        $action = $this->createAction();
         // trigger the appropriate action and get the resulted view
         if ($dataSource != null) {
             $result_view = $controller->$action($dataSource->getPdo());
         } else {
             $result_view = $controller->$action();
         }
-
         // render the view
         $result_view->render();
+    }
+
+    /**
+     * @return mixed the controller object that will process the request
+     */
+    public function createController(): mixed
+    {
+        $controller_name = HttpHelper::getParam('controller') ?: 'Home';
+        $controller_qualified_name = "controllers\\" . $controller_name . "Controller";
+        return new $controller_qualified_name();
+    }
+
+    /**
+     * @return string the name of the action to trigger
+     */
+    public function createAction(): string
+    {
+        return HttpHelper::getParam('action') ?: 'index';
     }
 }
 
