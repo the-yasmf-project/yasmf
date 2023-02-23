@@ -1,4 +1,5 @@
 <?php
+
 /**
  * yasmf - Yet Another Simple MVC Framework (For PHP)
  *     Copyright (C) 2019   Franck SILVESTRE
@@ -19,28 +20,52 @@
 
 namespace yasmf;
 
+/**
+ * Class representing view objects
+ */
 class View
 {
     private string $relativePath;
+    /**
+     * @var array<string, mixed> the map containing the parameters for the view
+     */
     private array $viewParams = array();
 
-    public function __construct($relativePath)
+    /**
+     * Construct a new view object
+     *
+     * @param string $relativePath the relative path to the file containing the presentation code
+     */
+    public function __construct(string $relativePath)
     {
         $this->relativePath = $relativePath;
     }
 
-    public function setVar($key, $value) : View
+    /**
+     * Set a variable that the view will be able to manipulate
+     *
+     * @param string $key the name of the variable
+     * @param object $value the value of the variable
+     * @return $this the update current view
+     */
+    public function setVar(string $key, object $value) : View
     {
         $this->viewParams[$key] = $value;
         return $this;
     }
 
+    /**
+     * Render the view mixing presentation code get from the relative path
+     * with the set variables
+     *
+     * @return void
+     */
     public function render() : void
     {
         // convert view params in variables accessible by the php file
         extract($this->viewParams);
-        // "enrole" the php file used to build and send the response
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/View.php";
+        // "enroll" the php file used to build and send the response
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/$this->relativePath.php";
     }
 
 }

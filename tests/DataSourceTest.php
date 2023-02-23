@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 
 class DataSourceTest extends TestCase
 {
-    function testDemo() {
+    function testDemo(): void {
         $this->assertTrue(true);
     }
 }

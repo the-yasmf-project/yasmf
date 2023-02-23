@@ -1,4 +1,5 @@
 <?php
+
 /**
  * yasmf - Yet Another Simple MVC Framework (For PHP)
  *     Copyright (C) 2019   Franck SILVESTRE
@@ -21,25 +22,34 @@ namespace yasmf;
 
 use controllers;
 
+/**
+ * Class representing objects in charge of routing the request to the right controller
+ * and the right action
+ */
 class Router
 {
-    public function route($dataSource = null): void
+    /**
+     * Route the request to the right controller and right action
+     * @param DataSource|null $dataSource the datasource used to connect to the database if needed
+     * @return void
+     */
+    public function route(DataSource $dataSource = null): void
     {
-        // set the controller to enrole
-        $controllerName = HttpHelper::getParam('controller') ?: 'Home';
-        $controllerQualifiedName = "controllers\\" . $controllerName . "Controller";
-        $controller = new $controllerQualifiedName();
+        // set the controller to enroll
+        $controller_name = HttpHelper::getParam('controller') ?: 'Home';
+        $controller_qualified_name = "controllers\\" . $controller_name . "Controller";
+        $controller = new $controller_qualified_name();
         // set the action to trigger
         $action = HttpHelper::getParam('action') ?: 'index';
         // trigger the appropriate action and get the resulted view
         if ($dataSource != null) {
-            $view = $controller->$action($dataSource->getPdo());
+            $result_view = $controller->$action($dataSource->getPdo());
         } else {
-            $view = $controller->$action();
+            $result_view = $controller->$action();
         }
 
         // render the view
-        $view->render();
+        $result_view->render();
     }
 }
 

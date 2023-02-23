@@ -1,4 +1,5 @@
 <?php
+
 /**
  * yasmf - Yet Another Simple MVC Framework (For PHP)
  *     Copyright (C) 2019   Franck SILVESTRE
@@ -19,10 +20,17 @@
 
 namespace yasmf;
 
-
+/**
+ * Helper class to get HTTP params
+ */
 class HttpHelper
 {
-    public static function getParam($name) {
+
+    /**
+     * @param string $name the name of the param
+     * @return string|null the value of the param if defined, null otherwise
+     */
+    public static function getParam(string $name): ?string {
         if (isset($_GET[$name])) return $_GET[$name];
         if (isset($_POST[$name])) return $_POST[$name];
         return null;
