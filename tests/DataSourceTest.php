@@ -20,9 +20,30 @@
 use yasmf\DataSource;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Test class for DataSource
+ */
 class DataSourceTest extends TestCase
 {
-    function testDemo(): void {
-        $this->assertTrue(true);
+    /**
+     * Test getPDO when it should fail
+     * @return void
+     */
+    function test_get_pdo_throws_exception_if_not_valid(): void
+    {
+        // given a datasource with an invalid datasource name
+        $datasource = new DataSource("localhost",
+            3333,
+            "wrong_name",
+            "wrong_user",
+            "xxxx",
+            "UTF8");
+        // when trying to get the PDO
+        try {
+            $datasource->getPDO();
+            self::fail("it should raise a PDO exception");
+        } catch(PDOException) {
+            self::assertTrue(true);
+        }
     }
 }
