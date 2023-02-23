@@ -45,10 +45,10 @@ class View
      * Set a variable that the view will be able to manipulate
      *
      * @param string $key the name of the variable
-     * @param object $value the value of the variable
+     * @param mixed $value the value of the variable
      * @return $this the update current view
      */
-    public function setVar(string $key, object $value) : View
+    public function setVar(string $key, mixed $value) : View
     {
         $this->viewParams[$key] = $value;
         return $this;
