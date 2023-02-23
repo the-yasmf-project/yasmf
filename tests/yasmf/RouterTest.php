@@ -33,19 +33,64 @@ class RouterTest extends TestCase
      *
      * @return void
      */
-    public function testCreateController(): void
+    public function testCreateController_Default(): void
     {
         // given a router
         $router = new Router();
-        // when creating a constructor with no parameter specification
+        // when creating a controller with no parameter specification
         $controller = $router->createController();
         // then the controller is an instance of HomeController
         // defined in namespace "controllers"
         self::assertInstanceOf("controllers\\HomeController", $controller);
     }
 
-    public function testCreateAction()
+    /**
+     * Test specified controller creation
+     *
+     * @return void
+     */
+    public function testCreateController_Specified(): void
     {
+        // given a router
+        $router = new Router();
+        // and a parameter specifying the controller name as "Dummy"
+        $_GET["controller"] = "Dummy";
+        // when creating a controller
+        $controller = $router->createController();
+        // then the controller is an instance of DummyController
+        // defined in namespace "controllers"
+        self::assertInstanceOf("controllers\\DummyController", $controller);
+    }
 
+    /**
+     * Test default action creation
+     *
+     * @return void
+     */
+    public function testCreateAction_Default(): void
+    {
+        // given a router
+        $router = new Router();
+        // when creating an action with no parameter specification
+        $action = $router->createAction();
+        // then the action is the default one : "index"
+        self::assertEquals("index", $action);
+    }
+
+    /**
+     * Test specified action creation
+     *
+     * @return void
+     */
+    public function testCreateAction_Specified(): void
+    {
+        // given a router
+        $router = new Router();
+        // and an action parameter
+        $_GET["action"] = "theAction";
+        // when creating an action
+        $action = $router->createAction();
+        // then the action is the  one specified by the parameter
+        self::assertEquals("theAction", $action);
     }
 }

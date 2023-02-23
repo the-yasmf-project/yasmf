@@ -1,7 +1,10 @@
 {
   "name": "yasmf/yasmf",
   "autoload": {
-    "psr-4": {"yasmf\\": "src/yasmf"}
+    "psr-4": {
+      "yasmf\\": "src/yasmf",
+      "controllers\\": "tests/controllers"
+    }
   },
   "require": {
     "php": ">=8.0",
