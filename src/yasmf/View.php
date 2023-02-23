@@ -58,14 +58,15 @@ class View
      * Render the view mixing presentation code get from the relative path
      * with the set variables
      *
+     * @param string $prefixToRelativePath the prefix to the relative path
      * @return void
      */
-    public function render() : void
+    public function render(string $prefixToRelativePath = '') : void
     {
         // convert view params in variables accessible by the php file
         extract($this->viewParams);
         // "enroll" the php file used to build and send the response
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/$this->relativePath.php";
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/$prefixToRelativePath" . "/$this->relativePath.php";
     }
 
 }

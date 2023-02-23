@@ -33,7 +33,7 @@ class Router
      * @param DataSource|null $dataSource the datasource used to connect to the database if needed
      * @return void
      */
-    public function route(DataSource $dataSource = null): void
+    public function route(string $prefixToRelativePath = '', DataSource $dataSource = null): void
     {
         // set the controller to enroll
         $controller = $this->createController();
@@ -46,7 +46,7 @@ class Router
             $result_view = $controller->$action();
         }
         // render the view
-        $result_view->render();
+        $result_view->render($prefixToRelativePath);
     }
 
     /**
