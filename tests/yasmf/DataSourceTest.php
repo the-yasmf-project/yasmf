@@ -1,7 +1,7 @@
 <?php
 /*
  * yasmf - Yet Another Simple MVC Framework (For PHP)
- *     Copyright (C) 2022   Franck SILVESTRE
+ *     Copyright (C) 2023   Franck SILVESTRE
  *
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU Affero General Public License as published
@@ -17,7 +17,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-use yasmf\DataSource;
+namespace yasmf;
+
+use PDOException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,7 +31,7 @@ class DataSourceTest extends TestCase
      * Test getPDO when it should fail
      * @return void
      */
-    function test_get_pdo_throws_exception_if_not_valid(): void
+    function test_get_pdo_throws_exception(): void
     {
         // given a datasource with an invalid datasource name
         $datasource = new DataSource("localhost",
@@ -42,7 +44,7 @@ class DataSourceTest extends TestCase
         try {
             $datasource->getPDO();
             self::fail("it should raise a PDO exception");
-        } catch(PDOException) {
+        } catch (PDOException) {
             self::assertTrue(true);
         }
     }
