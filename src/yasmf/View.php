@@ -26,6 +26,7 @@ namespace yasmf;
 class View
 {
     private string $relativePath;
+
     /**
      * @var array<string, mixed> the map containing the parameters for the view
      */
@@ -55,6 +56,16 @@ class View
     }
 
     /**
+     * Get var corresponding to given key
+     *
+     * @param string $key the name of the variable
+     * @return mixed the value of the variable
+     */
+    public function getVar(string $key) : mixed {
+        return $this->viewParams[$key];
+    }
+
+    /**
      * Render the view mixing presentation code get from the relative path
      * with the set variables
      *
@@ -67,6 +78,14 @@ class View
         extract($this->viewParams);
         // "enroll" the php file used to build and send the response
         require_once $_SERVER['DOCUMENT_ROOT'] . "/$prefixToRelativePath" . "/$this->relativePath.php";
+    }
+
+    /**
+     * @return string the relative path
+     */
+    public function getRelativePath(): string
+    {
+        return $this->relativePath;
     }
 
 }
