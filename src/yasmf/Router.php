@@ -20,7 +20,7 @@
 
 namespace yasmf;
 
-use controllers;
+
 
 /**
  * Class representing objects in charge of routing the request to the right controller
@@ -28,10 +28,21 @@ use controllers;
  */
 class Router
 {
+    private ComponentFactory $componentFactory;
+
+    /**
+     * @param ComponentFactory $componentFactory component factory
+     */
+    function __construct(ComponentFactory $componentFactory) {
+        $this->componentFactory = $componentFactory;
+    }
+
     /**
      * Route the request to the right controller and right action
+     * @param string $prefixToRelativePath
      * @param DataSource|null $dataSource the datasource used to connect to the database if needed
      * @return void
+     * @throws NoControllerAvailableForName when controller not found
      */
     public function route(string $prefixToRelativePath = '', DataSource $dataSource = null): void
     {
@@ -51,12 +62,12 @@ class Router
 
     /**
      * @return mixed the controller object that will process the request
+     * @throws NoControllerAvailableForName when controller not found
      */
     public function createController(): mixed
     {
         $controller_name = HttpHelper::getParam('controller') ?: 'Home';
-        $controller_qualified_name = "controllers\\" . $controller_name . "Controller";
-        return new $controller_qualified_name();
+        return $this->componentFactory->buildControllerByName($controller_name);
     }
 
     /**

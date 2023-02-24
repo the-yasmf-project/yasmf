@@ -17,9 +17,21 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace controllers;
+namespace yasmf;
 
-class HomeController
+use Exception;
+
+/**
+ * Exception corresponding to a not found controller
+ */
+class NoControllerAvailableForName extends Exception
 {
 
+    /**
+     * @param string $controller_name the name of the not found controller
+     */
+    public function __construct(string $controller_name)
+    {
+        parent::__construct($controller_name);
+    }
 }
