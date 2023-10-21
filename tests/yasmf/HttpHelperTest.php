@@ -44,7 +44,7 @@ class HttpHelperTest extends TestCase
     {
         // given: a param in _GET
         $_GET["param1"] = "value1";
-        // expected null as result
+        // expected the value of the param as result
         self::assertEquals("value1",HttpHelper::getParam("param1"));
     }
 
@@ -57,7 +57,7 @@ class HttpHelperTest extends TestCase
     {
         // given: a param in _GET
         $_POST["param1"] = "value1";
-        // expected null as result
+        // expected the vaue of the param as result
         self::assertEquals("value1",HttpHelper::getParam("param1"));
     }
 }

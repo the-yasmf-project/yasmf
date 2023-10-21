@@ -24,7 +24,7 @@ use Exception;
 /**
  * Exception corresponding to a not found service
  */
-class NoServiceAvailableForName extends Exception
+class NoServiceAvailableForNameException extends Exception
 {
 
     /**

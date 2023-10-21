@@ -24,7 +24,7 @@ use Exception;
 /**
  * Exception corresponding to a not found controller
  */
-class NoControllerAvailableForName extends Exception
+class NoControllerAvailableForNameException extends Exception
 {
 
     /**

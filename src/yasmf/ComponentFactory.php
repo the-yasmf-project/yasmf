@@ -28,14 +28,14 @@ interface ComponentFactory
     /**
      * @param string $controller_name the name of the controller to instanciate
      * @return mixed the controller
-     * @throws NoControllerAvailableForName when controller is not found
+     * @throws NoControllerAvailableForNameException when controller is not found
      */
     public function buildControllerByName(string $controller_name): mixed;
 
     /**
      * @param string $service_name the name of the service
      * @return mixed the created service
-     * @throws NoServiceAvailableForName when service is not found
+     * @throws NoServiceAvailableForNameException when service is not found
      */
     public function buildServiceByName(string $service_name): mixed;
 }

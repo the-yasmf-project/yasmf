@@ -49,7 +49,7 @@ class ViewTest extends TestCase
         $this->view->setVar("key1", "one string");
         $tab = ['a','b'];
         $this->view->setVar("key2", $tab );
-        // then getVar provides expeted results
+        // then getVar provides expected results
         self::assertEquals("one string",$this->view->getVar("key1"));
         self::assertSame($tab, $this->view->getVar("key2"));
         self::assertNull($this->view->getVar("key3"));
