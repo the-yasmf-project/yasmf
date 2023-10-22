@@ -42,7 +42,7 @@ class Router
      * @param string $prefixToRelativePath
      * @param DataSource|null $dataSource the datasource used to connect to the database if needed
      * @return void
-     * @throws NoControllerAvailableForName when controller not found
+     * @throws NoControllerAvailableForNameException when controller not found
      */
     public function route(string $prefixToRelativePath = '', DataSource $dataSource = null): void
     {
@@ -62,7 +62,7 @@ class Router
 
     /**
      * @return mixed the controller object that will process the request
-     * @throws NoControllerAvailableForName when controller not found
+     * @throws NoControllerAvailableForNameException when controller not found
      */
     public function createController(): mixed
     {
